@@ -1,0 +1,910 @@
+{
+	"info": {
+		"_postman_id": "e96ac3cd-e87c-408d-b738-dbdc9faeb30c",
+		"name": "LIIS Test v.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post",
+			"item": [
+				{
+					"name": "Get posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"strictSSL": false
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "javascript"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 320ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(320);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify author\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.author).to.eql(45 );\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourpostname\",\r\n    \"content\": \"yourpostcontent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"posts"
+							],
+							"query": [
+								{
+									"key": "Username",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yournewpostdsadsadsadsadasname\",\r\n    \"content\": \"yournewpostcontent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/post/2",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"post",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/post/2",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"post",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Get comments",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourcommenttitle\",\r\n    \"content\": \"yourcommenttext\",\r\n    \"post\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/comment/3",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"comment",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourdsadsadsafname\",\r\n    \"content\": \"yournewpfasdsadasdsadsadontent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/comment/6",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"jetimax@yandex.ru",
+								"comment",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Verify status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body is present\", function(){\r",
+									"    pm.response.to.have.body()\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Connection is present\", function () {\r",
+									"    pm.response.to.have.header(\"Connection\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Connection is keep-alive\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+									"    .to.include(\"keep-alive\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is present\", function () {\r",
+									"    pm.response.to.have.header(\"Date\");\r",
+									"    });\r",
+									"\r",
+									"pm.test(\"Date is Date\", function () { \r",
+									"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+									"    .to.include(\" \");\r",
+									"    });"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/<tester>/comment/2",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"<tester>",
+								"comment",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "sign-in",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Verify status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body is present\", function(){\r",
+							"    pm.response.to.have.body()\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Connection is present\", function () {\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"Connection is keep-alive\", function () { \r",
+							"    pm.expect(postman.getResponseHeader(\"Connection\"))\r",
+							"    .to.include(\"keep-alive\");\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"Date is present\", function () {\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    });\r",
+							"\r",
+							"pm.test(\"Date is Date\", function () { \r",
+							"    pm.expect(postman.getResponseHeader(\"Date\"))\r",
+							"    .to.include(\" \");\r",
+							"    });\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"euby\",\r\n    \"email\": \"eour\",\r\n    \"password\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://hr.recruit.liis.su/qa0/v1/api/jetimax@yandex.ru/sign-in",
+					"protocol": "https",
+					"host": [
+						"hr",
+						"recruit",
+						"liis",
+						"su"
+					],
+					"path": [
+						"qa0",
+						"v1",
+						"api",
+						"jetimax@yandex.ru",
+						"sign-in"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	]
+}
